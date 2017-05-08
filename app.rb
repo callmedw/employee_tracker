@@ -61,6 +61,5 @@ patch("/employees/:id") do
   name = params.fetch("name")
   @employee = Employee.find(params.fetch("id").to_i())
   @employee.update({:name => name})
-  @employees = Employee.all()
-  erb(:index)
+  redirect ('/')
 end
