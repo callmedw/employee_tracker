@@ -1,0 +1,22 @@
+<h1><%= @division.title %></h1>
+<p><a href="/divisions/<%= @division.id %>/edit">Edit <%= @division.title %> division</a></p>
+<p><a href="/">Return to Main Page</a></p>
+
+<% if @division.employees.any? %>
+  <h3>Here are all the employees in this division:</h3>
+
+  <ul>
+    <% @division.employees.each do |employee| %>
+        <li><%= employee.name %> <a href="/employees/<%= employee.id() %>/edit">Update this employee's name</a></li>
+      <% end %>
+  </ul>
+
+  <% else %>
+    <p>
+      There are no employees on this division!
+    </p>
+  <%end%>
+
+<div class="container">
+  <a href="/">Home</a>
+</div>

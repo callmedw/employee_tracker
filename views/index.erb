@@ -1,0 +1,38 @@
+<h1>Welcome to the Employee Tracker</h1>
+
+<p>Create a new division:</p>
+
+<form action="/divisions" method="post">
+  <label for="title">Assign a title to your division:</label>
+  <input id="title" name="title" type="text">
+
+  <button type="submit">Add division</button>
+</form>
+
+<p> Add employees to any division:</p>
+
+<form action="/employees" method="post">
+  <label for="division_id">Select a List</label>
+  <select id='division_id' name='division_id' type='text'>
+    <% @divisions.each() do |division| %>
+      <option value="<%= division.id()%>"> <%= division.title() %> </option>
+    <% end %>
+  </select>
+
+  <label for="name">Name of the employee:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add employee</button>
+</form>
+
+<% if @divisions.any?() %>
+<p>Click on a division to see its employees:</p>
+
+<ul>
+  <% @divisions.each do |division| %>
+  <li><a href="/divisions/<%= division.id() %>"><%= division.title() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no divisions yet!</p>
+<% end %>
